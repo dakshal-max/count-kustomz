@@ -41,7 +41,7 @@ export default function InstagramFeed() {
   };
 
   const currentData = profileData || {
-    name: "Count Kustom | Custom Furniture",
+    name: "COUNT KUSTOMz",
     bio: "Elevating spaces through master craftsmanship.\nSculptural woodwork & custom luxury living",
     postsCount: 4,
     followersCount: 13,

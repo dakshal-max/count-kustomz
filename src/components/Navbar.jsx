@@ -69,7 +69,7 @@ export default function Navbar({ cartCount, onOpenCart, activeSection, setActive
           />
           <div className="flex flex-col justify-center">
             <span className="font-serif-lim text-lg sm:text-2xl md:text-2xl font-semibold tracking-wider text-[#1C1B18] group-hover:text-[#6E6659] transition-colors uppercase whitespace-nowrap leading-tight">
-              COUNT KUSTOM ATELIER
+              COUNT KUSTOMz
             </span>
             <span className="text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] font-medium text-[#7C7569] uppercase whitespace-nowrap block mt-0.5">
               LIM Studio • Bespoke Furniture

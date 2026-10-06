@@ -31,7 +31,7 @@ export default function Footer() {
               />
               <div>
                 <h3 className="font-serif-lim text-3xl font-semibold tracking-wider text-[#FAF8F5] uppercase">
-                  COUNT KUSTOM ATELIER
+                  COUNT KUSTOMz
                 </h3>
                 <p className="text-xs text-[#D8CEBE] font-mono tracking-widest uppercase mt-0.5">
                   LIM STUDIO • BESPOKE FURNITURE ARCHITECTURE
