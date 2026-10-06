@@ -53,7 +53,7 @@ export default function CollectionGrid({ onAddToCart, currency, formatPrice }) {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="group bg-[#FAF8F5] border border-[#E0D7C9] rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-[#1C1B18]/40 transition-all duration-300 flex flex-col justify-between transform"
+              className="group bg-[#FAF8F5] border border-[#E0D7C9] rounded-2xl overflow-hidden flex flex-col justify-between"
             >
               <div>
                 {/* Image Container */}
@@ -61,7 +61,7 @@ export default function CollectionGrid({ onAddToCart, currency, formatPrice }) {
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover img-zoom transition-transform duration-700"
+                    className="w-full h-full object-cover"
                   />
 
                   {/* Badge */}
