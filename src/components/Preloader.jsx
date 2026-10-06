@@ -6,7 +6,7 @@ export default function Preloader({ onComplete }) {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Reveal letters one after another
+    // Reveal letters one after another at a luxurious pace
     const interval = setInterval(() => {
       setLettersRevealed((prev) => {
         if (prev < brandText.length) {
@@ -18,12 +18,12 @@ export default function Preloader({ onComplete }) {
             setIsFading(true);
             setTimeout(() => {
               if (onComplete) onComplete();
-            }, 700); // duration of fade out
-          }, 600);
+            }, 900); // 900ms duration of fade out
+          }, 1000); // 1000ms pause after text is complete
           return prev;
         }
       });
-    }, 120); // 120ms delay per letter
+    }, 200); // 200ms delay per letter for a slower, cinematic reveal
 
     return () => clearInterval(interval);
   }, []);
@@ -32,7 +32,7 @@ export default function Preloader({ onComplete }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#1C1B18] text-[#FAF8F5] transition-opacity duration-700 select-none ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#1C1B18] text-[#FAF8F5] transition-opacity duration-900 select-none ${
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
