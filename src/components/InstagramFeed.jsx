@@ -106,7 +106,7 @@ export default function InstagramFeed() {
             <div className="space-y-2">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
                 <h3 className="font-serif-lim text-2xl sm:text-3xl font-semibold text-[#1C1B18]">
-                  {currentData.name || "Count Kustom | Custom Furniture"}
+                  {currentData.name || "COUNT KUSTOMz"}
                 </h3>
                 <span className="text-xs bg-[#EAE4DA] text-[#4A453E] px-3 py-1 rounded-full font-bold tracking-wider">
                   {INSTAGRAM_HANDLE}

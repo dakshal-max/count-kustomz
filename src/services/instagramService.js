@@ -2,7 +2,7 @@
 
 const INSTAGRAM_FALLBACK = {
   username: "countkustom.atelier",
-  name: "Count Kustom | Custom Furniture",
+  name: "COUNT KUSTOMz",
   bio: "Elevating spaces through master craftsmanship.\nSculptural woodwork & custom luxury living",
   postsCount: 4,
   followersCount: 13,
@@ -91,7 +91,7 @@ export async function fetchLiveInstagramData(apiTokenOrUrl = null) {
 
         return {
           username: profile.username || 'countkustom.atelier',
-          name: 'Count Kustom | Custom Furniture',
+          name: 'COUNT KUSTOMz',
           bio: profile.biography || INSTAGRAM_FALLBACK.bio,
           postsCount: profile.media_count || formattedPosts.length,
           followersCount: INSTAGRAM_FALLBACK.followersCount,
