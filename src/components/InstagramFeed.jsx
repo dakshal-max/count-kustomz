@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Heart, MessageCircle, ArrowUpRight, Sparkles, CheckCircle2, Bookmark } from 'lucide-react';
+import { ExternalLink, Heart, MessageCircle, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import Instagram from './InstagramIcon';
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE, INSTAGRAM_POSTS, INSTAGRAM_STORIES } from '../data/furnitureData';
 
@@ -10,16 +10,16 @@ export default function InstagramFeed() {
     <section id="instagram" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAF8F5] border-b border-[#E6DFD5]">
       <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Instagram Profile Header Banner */}
-        <div className="bg-[#FAF8F5] border border-[#E0D7C9] rounded-3xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+        {/* Instagram Profile Banner */}
+        <div className="bg-[#FAF8F5] border border-[#E0D7C9] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 text-left">
           
-          <div className="flex items-center gap-6">
-            {/* IG Avatar */}
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+            {/* IG Avatar Logo */}
+            <div className="relative shrink-0">
               <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-[#D4AF37] via-[#C8B082] to-[#1C1B18] shadow-md">
                 <img
-                  src="/live-edge-table.jpg"
-                  alt="Count Kustom Atelier Profile"
+                  src="/count-kustom-logo.jpg"
+                  alt="Count Kustom Custom Furniture Logo"
                   className="w-full h-full object-cover rounded-full border-2 border-white"
                 />
               </div>
@@ -28,44 +28,47 @@ export default function InstagramFeed() {
               </span>
             </div>
 
-            {/* Profile Text */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-3">
+            {/* Profile Info */}
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
                 <h3 className="font-serif-lim text-2xl sm:text-3xl font-semibold text-[#1C1B18]">
-                  COUNT KUSTOM ATELIER
+                  Count Kustom | Custom Furniture
                 </h3>
-                <span className="text-xs bg-[#EAE4DA] text-[#4A453E] px-2.5 py-0.5 rounded-full font-bold tracking-wider">
+                <span className="text-xs bg-[#EAE4DA] text-[#4A453E] px-3 py-1 rounded-full font-bold tracking-wider">
                   {INSTAGRAM_HANDLE}
                 </span>
               </div>
-              <p className="text-xs text-[#6E6659] max-w-md">
-                Bespoke & Live-Edge Furniture Studio. Minimalist architectural forms crafted in raw organic timber slabs, hairpin steel & honed stone.
+
+              <p className="text-xs sm:text-sm text-[#4A453E] max-w-xl font-normal leading-relaxed">
+                Elevating spaces through master craftsmanship.<br />
+                Sculptural woodwork & custom luxury living.
               </p>
-              <div className="pt-2 flex items-center gap-6 text-xs text-[#1C1B18] font-medium">
-                <span><strong>142</strong> Posts</span>
-                <span><strong>18.5k</strong> Followers</span>
-                <span><strong>284</strong> Following</span>
+
+              <div className="pt-2 flex items-center justify-center sm:justify-start gap-6 text-xs text-[#1C1B18] font-medium">
+                <span><strong>4</strong> Posts</span>
+                <span><strong>13</strong> Followers</span>
+                <span><strong>1</strong> Following</span>
               </div>
             </div>
           </div>
 
-          {/* Direct Link Action */}
-          <div className="flex items-center gap-3">
+          {/* Follow CTA Button */}
+          <div className="shrink-0">
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#1C1B18] text-[#FAF8F5] px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#38352F] transition-all flex items-center gap-2 shadow-md"
+              className="bg-[#1C1B18] text-[#FAF8F5] px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#38352F] transition-all flex items-center gap-2 shadow-md hover:scale-105"
             >
               <Instagram className="w-4 h-4 text-[#D4AF37]" />
-              <span>Follow {INSTAGRAM_HANDLE}</span>
+              <span>FOLLOW {INSTAGRAM_HANDLE}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
 
         </div>
 
-        {/* Instagram Story Highlights */}
+        {/* Studio Highlights & Reels */}
         <div className="space-y-4 text-left">
           <span className="text-xs font-bold uppercase tracking-widest text-[#7C7569]">
             Studio Highlights & Reels
@@ -94,11 +97,11 @@ export default function InstagramFeed() {
           </div>
         </div>
 
-        {/* Instagram Grid Posts */}
+        {/* Live Instagram Feed Grid */}
         <div className="space-y-4 text-left">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-widest text-[#7C7569]">
-              Live Instagram Feed ({INSTAGRAM_HANDLE})
+              Official Instagram Feed ({INSTAGRAM_HANDLE})
             </span>
             <a
               href={INSTAGRAM_URL}
@@ -146,7 +149,7 @@ export default function InstagramFeed() {
                         <MessageCircle className="w-4 h-4" /> {post.comments}
                       </span>
                     </div>
-                    <span className="text-[10px] uppercase font-bold text-[#D4AF37]">Tap to inspect</span>
+                    <span className="text-[10px] uppercase font-bold text-[#D4AF37]">Inspect</span>
                   </div>
                 </div>
               </div>
@@ -200,17 +203,15 @@ export default function InstagramFeed() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#1C1B18] text-[#FAF8F5] py-3 rounded-xl text-xs font-semibold uppercase tracking-wider hover:bg-[#38352F] transition-all flex items-center justify-center gap-2 shadow"
-                >
-                  <Instagram className="w-4 h-4 text-[#D4AF37]" />
-                  <span>Send Direct DM to Order</span>
-                </a>
-              </div>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#1C1B18] text-white py-3 rounded-xl text-xs font-semibold text-center flex items-center justify-center gap-2 hover:bg-[#38352F] transition-all"
+              >
+                <Instagram className="w-4 h-4 text-[#D4AF37]" />
+                <span>Open in Instagram</span>
+              </a>
             </div>
 
           </div>

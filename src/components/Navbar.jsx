@@ -57,17 +57,24 @@ export default function Navbar({ cartCount, onOpenCart, activeSection, setActive
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[4.5rem] py-2.5 flex items-center justify-between gap-4">
-        {/* Brand Logo - Clean single-line responsive typography */}
+        {/* Brand Logo - Clean responsive logo + text */}
         <button 
           onClick={() => handleNavClick('hero')} 
-          className="text-left group flex flex-col justify-center focus:outline-none shrink-0 max-w-[65%] sm:max-w-none"
+          className="text-left group flex items-center gap-3 focus:outline-none shrink-0"
         >
-          <span className="font-serif-lim text-lg sm:text-2xl md:text-2xl lg:text-3xl font-semibold tracking-wider text-[#1C1B18] group-hover:text-[#6E6659] transition-colors uppercase whitespace-nowrap leading-tight">
-            COUNT KUSTOM ATELIER
-          </span>
-          <span className="text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] font-medium text-[#7C7569] uppercase whitespace-nowrap block mt-0.5">
-            LIM Studio • Bespoke Furniture
-          </span>
+          <img
+            src="/count-kustom-logo.jpg"
+            alt="Count Kustom Atelier Logo"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-[#D8CEBE] shadow-sm group-hover:scale-105 transition-transform"
+          />
+          <div className="flex flex-col justify-center">
+            <span className="font-serif-lim text-lg sm:text-2xl md:text-2xl font-semibold tracking-wider text-[#1C1B18] group-hover:text-[#6E6659] transition-colors uppercase whitespace-nowrap leading-tight">
+              COUNT KUSTOM ATELIER
+            </span>
+            <span className="text-[9px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] font-medium text-[#7C7569] uppercase whitespace-nowrap block mt-0.5">
+              LIM Studio • Bespoke Furniture
+            </span>
+          </div>
         </button>
 
         {/* Desktop Navigation */}
