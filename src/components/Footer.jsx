@@ -23,13 +23,20 @@ export default function Footer() {
           
           {/* Brand Info (Col 5) */}
           <div className="lg:col-span-5 space-y-6">
-            <div>
-              <h3 className="font-serif-lim text-3xl font-semibold tracking-wider text-[#FAF8F5] uppercase">
-                COUNT KUSTOM ATELIER
-              </h3>
-              <p className="text-xs text-[#D8CEBE] font-mono tracking-widest uppercase mt-1">
-                LIM STUDIO • BESPOKE FURNITURE ARCHITECTURE
-              </p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/count-kustom-logo.jpg"
+                alt="Count Kustom Atelier Logo"
+                className="w-12 h-12 rounded-full object-cover border border-[#D4AF37]/40 shadow-md"
+              />
+              <div>
+                <h3 className="font-serif-lim text-3xl font-semibold tracking-wider text-[#FAF8F5] uppercase">
+                  COUNT KUSTOM ATELIER
+                </h3>
+                <p className="text-xs text-[#D8CEBE] font-mono tracking-widest uppercase mt-0.5">
+                  LIM STUDIO • BESPOKE FURNITURE ARCHITECTURE
+                </p>
+              </div>
             </div>
 
             <p className="text-xs text-stone-400 max-w-md font-light leading-relaxed">
