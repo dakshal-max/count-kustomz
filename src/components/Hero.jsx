@@ -45,8 +45,8 @@ export default function Hero({ onExploreConfigurator, onExploreCollection, onOpe
         <div className="lg:col-span-6 space-y-8 text-left">
           
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#EAE4DA] border border-[#D8CEBE] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#4A453E]">
-            <span className="w-2 h-2 rounded-full bg-[#1C1B18]"></span>
+          <div className="inline-flex items-center gap-2.5 bg-[#EAE4DA] border border-[#D8CEBE] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#4A453E]">
+            <img src="/count-kustom-logo.jpg" alt="Count Kustom Seal" className="w-5 h-5 rounded-full object-cover border border-[#1C1B18]/20" />
             <span>LIM Aesthetic • Bespoke Furniture Studio</span>
           </div>
 
