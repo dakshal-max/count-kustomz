@@ -1,15 +1,33 @@
-/* LIM Aesthetic Custom Styles */
+/* LIM Aesthetic Custom Styles - Optimized for Mobile Smartphones, Tablets & Laptops */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #FAF8F5;
   color: #1C1B18;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .font-serif-lim {
   font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Hide scrollbar for clean horizontal story carousels */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Custom minimal scrollbar */
@@ -42,23 +60,15 @@ body {
 
 /* Custom glassmorphism for LIM aesthetics */
 .glass-lim {
-  background: rgba(250, 248, 245, 0.88);
+  background: rgba(250, 248, 245, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .glass-dark-lim {
-  background: rgba(28, 27, 24, 0.88);
+  background: rgba(28, 27, 24, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-}
-
-/* Image zoom transition */
-.img-zoom {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.group:hover .img-zoom {
-  transform: scale(1.04);
 }
 
 @keyframes fadeIn {
