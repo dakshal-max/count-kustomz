@@ -53,7 +53,7 @@ export default function CollectionGrid({ onAddToCart, currency, formatPrice }) {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="group bg-[#FAF8F5] border border-[#E0D7C9] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 flex flex-col justify-between"
+              className="group bg-[#FAF8F5] border border-[#E0D7C9] rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:border-[#1C1B18]/40 transition-all duration-300 flex flex-col justify-between transform"
             >
               <div>
                 {/* Image Container */}
