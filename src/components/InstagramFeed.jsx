@@ -1,24 +1,98 @@
-import React, { useState } from 'react';
-import { ExternalLink, Heart, MessageCircle, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ExternalLink, Heart, MessageCircle, ArrowUpRight, CheckCircle2, RefreshCw, Key, Settings, Sparkles } from 'lucide-react';
 import Instagram from './InstagramIcon';
-import { INSTAGRAM_URL, INSTAGRAM_HANDLE, INSTAGRAM_POSTS, INSTAGRAM_STORIES } from '../data/furnitureData';
+import { INSTAGRAM_URL, INSTAGRAM_HANDLE, INSTAGRAM_STORIES } from '../data/furnitureData';
+import { fetchLiveInstagramData } from '../services/instagramService';
 
 export default function InstagramFeed() {
   const [activePostModal, setActivePostModal] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [showConfigModal, setShowConfigModal] = useState(false);
+  const [tokenInput, setTokenInput] = useState('');
+  const [feedUrlInput, setFeedUrlInput] = useState('');
+
+  // Initial fetch and auto-polling loop (every 5 minutes)
+  const syncInstagram = async (customTokenOrUrl = null) => {
+    setIsSyncing(true);
+    const data = await fetchLiveInstagramData(customTokenOrUrl);
+    setProfileData(data);
+    setIsSyncing(false);
+  };
+
+  useEffect(() => {
+    syncInstagram();
+    const interval = setInterval(() => {
+      syncInstagram();
+    }, 300000); // 5 mins
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSaveConfig = (e) => {
+    e.preventDefault();
+    if (tokenInput.trim()) {
+      localStorage.setItem('count_kustom_ig_token', tokenInput.trim());
+    }
+    if (feedUrlInput.trim()) {
+      localStorage.setItem('count_kustom_ig_feed_url', feedUrlInput.trim());
+    }
+    setShowConfigModal(false);
+    syncInstagram();
+  };
+
+  const currentData = profileData || {
+    name: "Count Kustom | Custom Furniture",
+    bio: "Elevating spaces through master craftsmanship.\nSculptural woodwork & custom luxury living",
+    postsCount: 4,
+    followersCount: 13,
+    followingCount: 1,
+    avatar: "/count-kustom-logo.jpg",
+    posts: [],
+    isLive: false
+  };
 
   return (
-    <section id="instagram" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAF8F5] border-b border-[#E6DFD5]">
+    <section id="instagram" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FAF8F5] border-b border-[#E6DFD5] relative selection:bg-[#EAE4DA]">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Instagram Profile Banner */}
-        <div className="bg-[#FAF8F5] border border-[#E0D7C9] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+        <div className="bg-[#FAF8F5] border border-[#E0D7C9] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 text-left relative overflow-hidden">
           
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+          {/* Top Live Sync Status Badge */}
+          <div className="absolute top-4 right-4 flex items-center gap-2">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+              currentData.isLive
+                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                : 'bg-[#EAE4DA] text-[#6E6659] border border-[#D8CEBE]'
+            }`}>
+              <span className={`w-2 h-2 rounded-full ${currentData.isLive ? 'bg-emerald-500 animate-ping' : 'bg-amber-500'}`}></span>
+              <span>{currentData.isLive ? 'LIVE INSTAGRAM SYNCED' : 'AUTO-SYNC ACTIVE'}</span>
+            </span>
+
+            <button
+              onClick={() => syncInstagram()}
+              disabled={isSyncing}
+              className="p-1.5 rounded-full bg-white border border-[#D8CEBE] text-[#1C1B18] hover:bg-[#EAE4DA] transition-all shadow-sm"
+              title="Refresh Instagram Feed"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin text-[#D4AF37]' : ''}`} />
+            </button>
+
+            <button
+              onClick={() => setShowConfigModal(true)}
+              className="p-1.5 rounded-full bg-white border border-[#D8CEBE] text-[#1C1B18] hover:bg-[#EAE4DA] transition-all shadow-sm"
+              title="Configure API Token / Feed URL"
+            >
+              <Settings className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left mt-4 sm:mt-0">
             {/* IG Avatar Logo */}
             <div className="relative shrink-0">
               <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-[#D4AF37] via-[#C8B082] to-[#1C1B18] shadow-md">
                 <img
-                  src="/count-kustom-logo.jpg"
+                  src={currentData.avatar || "/count-kustom-logo.jpg"}
                   alt="Count Kustom Custom Furniture Logo"
                   className="w-full h-full object-cover rounded-full border-2 border-white"
                 />
@@ -32,22 +106,21 @@ export default function InstagramFeed() {
             <div className="space-y-2">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
                 <h3 className="font-serif-lim text-2xl sm:text-3xl font-semibold text-[#1C1B18]">
-                  Count Kustom | Custom Furniture
+                  {currentData.name || "Count Kustom | Custom Furniture"}
                 </h3>
                 <span className="text-xs bg-[#EAE4DA] text-[#4A453E] px-3 py-1 rounded-full font-bold tracking-wider">
                   {INSTAGRAM_HANDLE}
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#4A453E] max-w-xl font-normal leading-relaxed">
-                Elevating spaces through master craftsmanship.<br />
-                Sculptural woodwork & custom luxury living.
+              <p className="text-xs sm:text-sm text-[#4A453E] max-w-xl font-normal leading-relaxed whitespace-pre-line">
+                {currentData.bio}
               </p>
 
               <div className="pt-2 flex items-center justify-center sm:justify-start gap-6 text-xs text-[#1C1B18] font-medium">
-                <span><strong>4</strong> Posts</span>
-                <span><strong>13</strong> Followers</span>
-                <span><strong>1</strong> Following</span>
+                <span><strong>{currentData.postsCount}</strong> Posts</span>
+                <span><strong>{currentData.followersCount}</strong> Followers</span>
+                <span><strong>{currentData.followingCount}</strong> Following</span>
               </div>
             </div>
           </div>
@@ -100,22 +173,25 @@ export default function InstagramFeed() {
         {/* Live Instagram Feed Grid */}
         <div className="space-y-4 text-left">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#7C7569]">
-              Official Instagram Feed ({INSTAGRAM_HANDLE})
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#7C7569]">
+                Live Instagram Feed ({INSTAGRAM_HANDLE})
+              </span>
+              {isSyncing && <span className="text-[10px] text-[#D4AF37] font-semibold animate-pulse">Syncing...</span>}
+            </div>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-semibold text-[#1C1B18] hover:text-[#D4AF37] flex items-center gap-1 underline"
             >
-              <span>View full feed on Instagram</span>
+              <span>View full profile on Instagram</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {INSTAGRAM_POSTS.map((post) => (
+            {(currentData.posts || []).map((post) => (
               <div
                 key={post.id}
                 onClick={() => setActivePostModal(post)}
@@ -204,16 +280,75 @@ export default function InstagramFeed() {
               </div>
 
               <a
-                href={INSTAGRAM_URL}
+                href={activePostModal.permalink || INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#1C1B18] text-white py-3 rounded-xl text-xs font-semibold text-center flex items-center justify-center gap-2 hover:bg-[#38352F] transition-all"
               >
                 <Instagram className="w-4 h-4 text-[#D4AF37]" />
-                <span>Open in Instagram</span>
+                <span>Open Post on Instagram</span>
               </a>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* CONFIGURATION MODAL */}
+      {showConfigModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#FAF8F5] rounded-3xl max-w-md w-full p-6 border border-[#E0D7C9] shadow-2xl space-y-5 text-left">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E0D7C9]">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                <h4 className="font-bold text-[#1C1B18] text-sm">Instagram Real-time Auto-Sync Settings</h4>
+              </div>
+              <button onClick={() => setShowConfigModal(false)} className="text-xs font-bold text-stone-500">✕</button>
+            </div>
+
+            <p className="text-xs text-[#6E6659] leading-relaxed">
+              Connect your Meta Instagram Access Token or dynamic JSON Feed URL (e.g. Behold.so / LightWidget). Any new photos posted to <strong>@countkustom.atelier</strong> will immediately render on the site!
+            </p>
+
+            <form onSubmit={handleSaveConfig} className="space-y-4 text-xs">
+              <div className="space-y-1">
+                <label className="font-bold text-[#1C1B18]">Instagram Access Token (Meta Graph API)</label>
+                <input
+                  type="password"
+                  placeholder="IGQVJ..."
+                  value={tokenInput}
+                  onChange={(e) => setTokenInput(e.target.value)}
+                  className="w-full px-3 py-2 border border-[#E0D7C9] rounded-xl bg-white focus:outline-none focus:ring-1 focus:ring-[#1C1B18]"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="font-bold text-[#1C1B18]">Or Behold.so / Feed JSON URL</label>
+                <input
+                  type="url"
+                  placeholder="https://behold.so/api/v1/feed/..."
+                  value={feedUrlInput}
+                  onChange={(e) => setFeedUrlInput(e.target.value)}
+                  className="w-full px-3 py-2 border border-[#E0D7C9] rounded-xl bg-white focus:outline-none focus:ring-1 focus:ring-[#1C1B18]"
+                />
+              </div>
+
+              <div className="pt-2 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowConfigModal(false)}
+                  className="px-4 py-2 rounded-xl text-stone-600 bg-stone-200 font-semibold"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl text-white bg-[#1C1B18] font-semibold hover:bg-[#38352F]"
+                >
+                  Save & Sync Live
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
