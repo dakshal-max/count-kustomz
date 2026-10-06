@@ -56,17 +56,12 @@ export default function CollectionGrid({ onAddToCart, currency, formatPrice }) {
               className="group bg-[#FAF8F5] border border-[#E0D7C9] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 flex flex-col justify-between"
             >
               <div>
-                {/* Image Container with Hover Crossfade */}
+                {/* Image Container */}
                 <div className="relative aspect-[4/3] bg-[#EAE4DA] overflow-hidden cursor-pointer" onClick={() => setQuickViewProduct(product)}>
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover img-zoom group-hover:opacity-0 transition-opacity duration-700"
-                  />
-                  <img
-                    src={product.secondaryImage || product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                    className="w-full h-full object-cover img-zoom transition-transform duration-700"
                   />
 
                   {/* Badge */}
