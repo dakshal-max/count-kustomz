@@ -10,9 +10,11 @@ import PhilosophySection from './components/PhilosophySection';
 import CartInquiryDrawer from './components/CartInquiryDrawer';
 import Footer from './components/Footer';
 import FloatingWhatsAppWidget from './components/FloatingWhatsAppWidget';
+import Preloader from './components/Preloader';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
   const [activeSection, setActiveSection] = useState('hero');
   const [cartOpen, setCartOpen] = useState(false);
@@ -65,6 +67,9 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1C1B18] font-sans antialiased selection:bg-[#EAE4DA]">
       
+      {/* Animated Preloader */}
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+
       {/* Navigation Header */}
       <Navbar
         cartCount={cart.length}
