@@ -36,12 +36,12 @@ export default function Preloader({ onComplete }) {
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Brand Logo Seal */}
-      <div className="w-20 h-20 mb-8 rounded-full border-2 border-[#D4AF37]/50 p-1 shadow-2xl animate-pulse">
+      {/* Brand Logo Seal - Perfectly Centered with Gold Glow */}
+      <div className="w-24 h-24 sm:w-28 sm:h-28 mb-8 rounded-full p-1 bg-gradient-to-tr from-[#D4AF37] via-[#C8B082] to-[#1C1B18] shadow-[0_0_35px_rgba(212,175,55,0.4)] animate-pulse flex items-center justify-center">
         <img
           src="/count-kustom-logo.jpg"
           alt="Count Kustom Atelier Logo"
-          className="w-full h-full object-cover rounded-full"
+          className="w-full h-full object-cover object-center rounded-full border-2 border-[#1C1B18]"
         />
       </div>
 
